@@ -12,10 +12,12 @@ phases:
   pre_build:
     commands:
       - ls -lha
+      - cat buildspec.yml
 
   build:
     commands:
       - echo Build and package code
+      - echo aws cloudformation deploy ... serverless-website.yml ... --parameter-overrides parameters.json
       # - >
       #   aws cloudformation deploy --template-file template-output.yaml \
       #       --capabilities CAPABILITY_NAMED_IAM \
@@ -31,5 +33,5 @@ phases:
   # post_build:
   #   commands:
   #     # Capture CloudFormation outputs in ./tests/cloudformation-outputs.json
-  #     - aws cloudformation describe-stacks --stack-name ${STACKNAME} --query 'Stacks[*].Outputs' | jq '.[]' > ./tests/cloudformation-outputs.json
+  #     - aws cloudformation describe-stacks --stack-name ${STACKNAME} --query 'Stacks[*].Outputs' | jq '.[]' > ./cloudformation-outputs.json
 
