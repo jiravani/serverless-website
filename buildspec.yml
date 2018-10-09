@@ -1,0 +1,35 @@
+version: 0.2
+
+# env:
+
+  # parameter-store:
+
+  #   VERICODE_USERNAME: "VericodeUsername"
+
+  #   VERICODE_PASSWORD: "VericodePassword"
+
+phases:
+  pre_build:
+    commands:
+      - ls -lha
+
+  build:
+    commands:
+      - echo Build and package code
+      # - >
+      #   aws cloudformation deploy --template-file template-output.yaml \
+      #       --capabilities CAPABILITY_NAMED_IAM \
+      #       --stack-name $STACKNAME \
+      #       --region us-west-2 \
+      #       --no-fail-on-empty-changeset \
+      #       --parameter-overrides file://parameters.json \
+      #       --tags file://tags.json || 
+      #       $(printf "aws cloudformation describe-stack-events \
+      #               --stack-name %s \
+      #               --output table \
+      #               --query 'StackEvents[?Timestamp >= \`%s\`].[Timestamp,ResourceType,LogicalResourceId,ResourceStatus,ResourceStatusReason]'" $STACKNAME $TIME | sh && exit 1)
+  # post_build:
+  #   commands:
+  #     # Capture CloudFormation outputs in ./tests/cloudformation-outputs.json
+  #     - aws cloudformation describe-stacks --stack-name ${STACKNAME} --query 'Stacks[*].Outputs' | jq '.[]' > ./tests/cloudformation-outputs.json
+
