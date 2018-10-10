@@ -58,7 +58,7 @@ Resources:
           def lambda_handler(event, context):
             return {
               "statusCode": 200,
-              "body": "This is a website",
+              "body": "This is an updated website",
               "headers": {
                 "Content-Type": "text/html"
               }
