@@ -1,8 +1,5 @@
 version: 0.2
 
-env:
-  parameter-store:
-    SECRET: "SECRET"
 phases:
   pre_build:
     commands:
@@ -10,7 +7,7 @@ phases:
       - cat buildspec.yml
       - echo potato
       - eb deploy 
-      - echo $SECRET
+
 
   build:
     commands:
