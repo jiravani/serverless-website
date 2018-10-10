@@ -1,17 +1,16 @@
 version: 0.2
 
-# env:
-  # parameter-store:
-  #   VERICODE_USERNAME: "VericodeUsername"
-  #   VERICODE_PASSWORD: "VericodePassword"
-
+env:
+  parameter-store:
+    SECRET: "SECRET"
 phases:
   pre_build:
     commands:
-      - exit 1
       - ls -lha
       - cat buildspec.yml
       - echo potato
+      - eb deploy 
+      - echo $SECRET
 
   build:
     commands:
