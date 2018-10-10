@@ -1,11 +1,8 @@
 version: 0.2
 
 # env:
-
   # parameter-store:
-
   #   VERICODE_USERNAME: "VericodeUsername"
-
   #   VERICODE_PASSWORD: "VericodePassword"
 
 phases:
@@ -13,6 +10,7 @@ phases:
     commands:
       - ls -lha
       - cat buildspec.yml
+      - echo potato
 
   build:
     commands:

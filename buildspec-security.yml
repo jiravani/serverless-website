@@ -1,0 +1,12 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - sudo gem install cfn-nag
+  pre_build:
+    commands:
+      - printenv
+      - ls -lha
+  post_build:
+    commands:
+      - cfn_nag_scan --input-path serverless-website.yml
