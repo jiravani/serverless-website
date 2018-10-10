@@ -8,6 +8,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - exit 1
       - ls -lha
       - cat buildspec.yml
       - echo potato
