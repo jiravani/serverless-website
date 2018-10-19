@@ -1,3 +1,5 @@
 [
-  "TagName=TagValue"
+  "TagName=TagValue",
+  "Tag2=SomeValue",
+  "Wanna=havesomepy"
 ]
