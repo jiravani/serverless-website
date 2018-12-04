@@ -6,14 +6,11 @@ phases:
       - ls -lha
       - cat buildspec.yml
       - STACKNAME=serverless-website
-
-
   build:
     commands:
       - echo Build and package code
-      - echo aws cloudformation deploy ... serverless-website.yml ... --parameter-overrides parameters.json
       - >
-        aws cloudformation deploy --template-file template-output.yaml \
+        aws cloudformation deploy --template-file serverless-website.yml \
             --capabilities CAPABILITY_NAMED_IAM \
             --stack-name $STACKNAME \
             --region us-west-2 \
@@ -24,8 +21,8 @@ phases:
             #         --stack-name %s \
             #         --output table \
             #         --query 'StackEvents[?Timestamp >= \`%s\`].[Timestamp,ResourceType,LogicalResourceId,ResourceStatus,ResourceStatusReason]'" $STACKNAME $TIME | sh && exit 1)
-  post_build:
-    commands:
-      # Capture CloudFormation outputs in ./tests/cloudformation-outputs.json
-      - aws cloudformation describe-stacks --stack-name ${STACKNAME} --query 'Stacks[*].Outputs' | jq '.[]' > ./cloudformation-outputs.json
+  # post_build:
+  #   commands:
+  #     # Capture CloudFormation outputs in ./tests/cloudformation-outputs.json
+  #     - aws cloudformation describe-stacks --stack-name ${STACKNAME} --query 'Stacks[*].Outputs' | jq '.[]' > ./cloudformation-outputs.json
 
