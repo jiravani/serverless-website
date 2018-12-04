@@ -63,12 +63,12 @@ Resources:
                 "Content-Type": "text/html"
               }
             }
-      Description: ''
+      Description: 'This is a lambda function'
       Tags:
         - Value: SAM
           Key: 'lambda:createdBy'
       MemorySize: 128
-      Handler: lambda_function.lambda_handler
+      Handler: index.lambda_handler
       Role: !GetAtt 
         - UrlRedirectLambdaRole
         - Arn
