@@ -5,6 +5,10 @@ Outputs:
     Value: !Sub >-
       https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ServerlessRestApiProdStage}/
 Description: This is a url redirection tool for your domain (bit.ly clone)
+Parameters:
+  Name:
+    Type: String
+    Default: Justin
 Resources:
   ServerlessRestApiProdStage:
     Type: 'AWS::ApiGateway::Stage'
@@ -58,7 +62,7 @@ Resources:
           def lambda_handler(event, context):
             return {
               "statusCode": 200,
-              "body": "This is Josh's website",
+              "body": !Join [' ',['This is', !Ref Name, 'Website' ]],
               "headers": {
                 "Content-Type": "text/html"
               }
