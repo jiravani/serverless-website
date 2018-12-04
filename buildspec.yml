@@ -5,6 +5,7 @@ phases:
     commands:
       - ls -lha
       - cat buildspec.yml
+      - STACKNAME=serverless-website
 
 
   build:
@@ -17,12 +18,12 @@ phases:
             --stack-name $STACKNAME \
             --region us-west-2 \
             --no-fail-on-empty-changeset \
-            --parameter-overrides file://parameters.json \
-            --tags file://tags.json || 
-            $(printf "aws cloudformation describe-stack-events \
-                    --stack-name %s \
-                    --output table \
-                    --query 'StackEvents[?Timestamp >= \`%s\`].[Timestamp,ResourceType,LogicalResourceId,ResourceStatus,ResourceStatusReason]'" $STACKNAME $TIME | sh && exit 1)
+            --parameter-overrides file://parameters.json
+            # --tags file://tags.json || 
+            # $(printf "aws cloudformation describe-stack-events \
+            #         --stack-name %s \
+            #         --output table \
+            #         --query 'StackEvents[?Timestamp >= \`%s\`].[Timestamp,ResourceType,LogicalResourceId,ResourceStatus,ResourceStatusReason]'" $STACKNAME $TIME | sh && exit 1)
   post_build:
     commands:
       # Capture CloudFormation outputs in ./tests/cloudformation-outputs.json
