@@ -59,10 +59,12 @@ Resources:
     Properties:
       Code:
         ZipFile: |
+          import os
           def lambda_handler(event, context):
+            body = 'This is ' + os.environ.get('Name', '') + "'s Website."
             return {
               "statusCode": 200,
-              "body": !Join [' ',['This is', !Ref Name, 'Website' ]],
+              "body": body,
               "headers": {
                 "Content-Type": "text/html"
               }
@@ -78,6 +80,9 @@ Resources:
         - Arn
       Timeout: 3
       Runtime: python2.7
+      Environment:
+        Variables:
+          Name: !Ref Name
   ServerlessRestApiDeployment05484783ae:
     Type: 'AWS::ApiGateway::Deployment'
     Properties:
