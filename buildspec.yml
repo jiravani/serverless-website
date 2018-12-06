@@ -5,6 +5,7 @@ phases:
     commands:
       - ls -lha
       - cat buildspec.yml
+      - printenv
       - STACKNAME=serverless-website
   build:
     commands:
