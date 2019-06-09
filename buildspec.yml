@@ -7,6 +7,7 @@ phases:
       - cat buildspec.yml
       - printenv
       - STACKNAME=serverless-website
+      - yum install jq -y
   build:
     commands:
       - echo Build and package code
