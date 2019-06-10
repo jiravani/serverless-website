@@ -1,6 +1,9 @@
 version: 0.2
-
 phases:
+  install:
+    runtime-versions:
+      ruby: 2.6
+      python: 3.7
   pre_build:
     commands:
       - ls -lha
