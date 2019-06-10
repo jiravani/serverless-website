@@ -22,7 +22,7 @@ phases:
             --region us-west-2 \
             --no-fail-on-empty-changeset \
             --parameter-overrides file://parameters.json
-            # --tags file://tags.json || 
+            # --tags file://tags.json || HHC0o1Z
             # $(printf "aws cloudformation describe-stack-events \
             #         --stack-name %s \
             #         --output table \
@@ -30,4 +30,7 @@ phases:
   post_build:
     commands:
       - aws cloudformation describe-stacks --stack-name ${STACKNAME} --query 'Stacks[*].Outputs' | jq '.[]' > ./cloudformation-outputs.json
-
+  
+  artifacts:
+    files:
+      - '**/*'
