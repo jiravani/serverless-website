@@ -15,6 +15,6 @@ phases:
       - cat cloudformation-outputs.json
   build:
     commands:
-      - API_ENDPOINT=$(cat cloudformation-outputs.json | jq -r .OutputValue)
-      - RESPONSE=$(curl $API_ENDPOINT)
+      - API_ENDPOINT=$(cat cloudformation-outputs.json | jq .OutputValue)
+      - RESPONSE=$(curl --insecure $API_ENDPOINT)
       - if [ $? -ne 0 ] ; then echo "Unable to resolve endpoint. Test failed";exit 1 ; fi
