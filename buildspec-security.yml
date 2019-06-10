@@ -5,7 +5,7 @@ phases:
       ruby: 2.6
       python: 3.7
     commands:
-      - sudo gem install cfn-nag
+      - gem install cfn-nag
   pre_build:
     commands:
       - printenv
