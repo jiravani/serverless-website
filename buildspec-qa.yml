@@ -17,5 +17,5 @@ phases:
   build:
     commands:
       - API_ENDPOINT=$(cat cloudformation-outputs.json | jq .[].OutputValue)
-      - python -c "import requests;response = requests.get(url=${API_ENDPOINT});print(response)"
+      - python -c "import requests;requests.packages.urllib3.disable_warnings();response = requests.get(url=${API_ENDPOINT});print(response)"
       - if [ $? -ne 0 ] ; then echo "Unable to resolve endpoint. Test failed";exit 1 ; fi
