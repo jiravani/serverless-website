@@ -13,8 +13,9 @@ phases:
       - sudo apt-get update
       - sudo apt-get install jq
       - cat cloudformation-outputs.json
+      - pip install requests
   build:
     commands:
       - API_ENDPOINT=$(cat cloudformation-outputs.json | jq .[].OutputValue)
-      - RESPONSE=$(curl --insecure "${API_ENDPOINT}")
+      - python -c "import requests;response = requests.get(url=\"${API_ENDPOINT}\");print(response)"
       - if [ $? -ne 0 ] ; then echo "Unable to resolve endpoint. Test failed";exit 1 ; fi
