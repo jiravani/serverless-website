@@ -14,7 +14,7 @@ phases:
       - sudo apt-get install jq
       - cat cloudformation-outputs.json
       - pip install requests
-      - pip install pyopenssl
+      - pip install --upgrade pyopenssl
   build:
     commands:
       - API_ENDPOINT=$(cat cloudformation-outputs.json | jq .[].OutputValue)
